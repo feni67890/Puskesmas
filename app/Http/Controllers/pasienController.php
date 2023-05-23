@@ -10,14 +10,14 @@ class pasienController extends Controller
     public function index()
     {
         $pasiens = Pasien::getAll();
-        return view('pasien.index', [
+        return view('Admin.pasien.index', [
             'pasiens' => $pasiens
         ]);
     }
 
     public function create()
     {
-        return view('pasien.create');
+        return view('Admin.pasien.create');
     }
 
     public function store(Request $request)
