@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class pasienController extends Controller
 {
+    // method untuk menampilkan 
     public function index()
     {
-        $pasiens = Pasien::getAll();
+        $pasiens = Pasien::all();
         return view('Admin.pasien.index', [
             'pasiens' => $pasiens
         ]);
@@ -22,6 +23,15 @@ class pasienController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // insert data ke table pasiens 
+        Pasien::create([
+            // field di table => nilai yang ingin di isi
+            'nama' => $request->nama,
+            'jk' => $request->jk,
+            'tgl_lahir' => $request->tgl_lahir,
+            'alamat' => $request->alamat,
+            'telp' => $request->telp
+        ]);
+        return redirect('/pasien');
     }
 }

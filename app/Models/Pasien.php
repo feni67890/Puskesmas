@@ -8,13 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pasien extends Model
 {
     use HasFactory;
+    // hubungan model ke table pasiens
+    protected $table = 'pasiens';
 
-    public static function getAll()
-    {
-        return [
-            ['nama' => 'Udin', 'jk' => 'l', 'tgl_lahir' => '12/06/2022', 'alamat' => 'Bogor', 'telp' => '081234567890'],
-            ['nama' => 'siti', 'jk' => 'p', 'tgl_lahir' => '01/07/2003', 'alamat' => 'Depok', 'telp' => '081234567890'],
-            ['nama' => 'Budi', 'jk' => 'l', 'tgl_lahir' => '02/01/2000', 'alamat' => 'jakarta', 'telp' => '081234567890'],
-        ];
-    }
+    // menyebutkan field yan boleh di isi
+    protected $fillable = ['nama', 'jk', 'tgl_lahir', 'alamat', 'telp'];
 }
