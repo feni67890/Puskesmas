@@ -30,8 +30,8 @@ Route::post('/pasien', [pasienController::class, 'store']);
 // Route untuk menampilkan list Dokter
 Route::get('/dokter', [DokterController::class, 'index']);
 
-//Route untuk menampilka form tambah dokter
+//Route untuk menampilka form *S tambah dokter
 Route::get('/dokter/create', [DokterController::class, 'create']);
 
-// Route untuk memproses form Dokter
+// Route untuk memproses form * Dokter
 Route::post('/dokter', [DokterController::class, 'store']);

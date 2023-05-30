@@ -12,9 +12,9 @@ class Dokter extends Model
     public static function getAll()
     {
         return [
-            ['nama' => 'Udin', 'spesialis' => 'Jantung',  'alamat' => 'Bogor', 'telp' => '081234567890'],
-            ['nama' => 'siti', 'spesialis' => 'Saraf', 'alamat' => 'Depok', 'telp' => '081234567890'],
-            ['nama' => 'Budi', 'spesialis' => 'Anak', 'alamat' => 'jakarta', 'telp' => '081234567890'],
+            ['nama' => 'erica', 'spesialis' => 'kecantikan',  'alamat' => 'Bogor', 'telp' => '081234567890'],
+            ['nama' => 'juliet', 'spesialis' => 'kulit', 'alamat' => 'Depok', 'telp' => '081234567890'],
+            ['nama' => 'bilqis', 'spesialis' => 'hati', 'alamat' => 'jakarta', 'telp' => '081234567890'],
         ];
     }
 }

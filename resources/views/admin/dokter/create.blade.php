@@ -21,15 +21,15 @@
                 <form action="/dokter" method="post" class="mx-2">
                     <div class="form-group mt-3">
                         @csrf
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Dokter" value="">
+                        <label for="name">name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Masukkan Nama Dokter" value="">
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="spesialis">spesialis</label>
                         <select class="form-control" name="spesialis">
                             <option >spesialis Jantung</option>
-                            <option >spesialis Anak</option>
+                            <option >spesialis hati</option>
                             <option >spesialis Kulit</option>
                             <option >spesialis Kandungan</option>
                             <option >spesialis Kelamin</option>

@@ -19,8 +19,9 @@ class DokterController extends Controller
     {
         return view('admin.dokter.create');
     }
-
     public function store(Request $request)
+
+
     {
         dd($request->all());
     }
