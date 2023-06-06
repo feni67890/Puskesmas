@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pasien extends Model
 {
     use HasFactory;
+
     // hubungan model ke table pasiens
     protected $table = 'pasiens';
 

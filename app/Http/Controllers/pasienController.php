@@ -23,6 +23,15 @@ class pasienController extends Controller
 
     public function store(Request $request)
     {
+        // Melakukan validasi data form
+        $request->validate([
+            'nama' => 'required | min:3',
+            'jk' => 'required ',
+            'tgl_lahir' => 'required | date',
+            'alamat' => 'required|max:500',
+            'telp' => 'required|numeric|digits_between:10,14',
+        ]);
+
         // insert data ke table pasiens 
         Pasien::create([
             // field di table => nilai yang ingin di isi
@@ -33,5 +42,46 @@ class pasienController extends Controller
             'telp' => $request->telp
         ]);
         return redirect('/pasien');
+    }
+    public function edit($id)
+    {
+        // mendapatkan pasien berdasarkan id
+        $pasien = Pasien::find($id);
+
+
+        return view('Admin.pasien.edit', [
+            'pasien' => $pasien
+        ]);
+    }
+
+    // method untuk update pasien 
+    public function update($id, Request $request)
+    {
+        // Melakukan validasi data form
+        $validatedData = $request->validate([
+            'nama' => 'required | min:3',
+            'jk' => 'required ',
+            'tgl_lahir' => 'required | date',
+            'alamat' => 'required|max:500',
+            'telp' => 'required|numeric|digits_between:10,14',
+        ]);
+
+        // cari pasien yang akan di update
+        $pasien = pasien::find($id);
+
+        // update pasien
+        $pasien->update($validatedData);
+
+        //kembalikan ke halaman daftar pasien 
+        return redirect('/pasien')->with('success', 'Data pasien berhasil di ubah');
+    }
+
+    // method untuk hapus pasien
+    public function destroy(Request $request)
+    {
+        pasien::destroy($request->id);
+
+        // kembalikan kehalaman daftar pasien
+        return redirect('/pasien')->with('success', 'Data pasien berhasil dihapus');
     }
 }
