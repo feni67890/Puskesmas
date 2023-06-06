@@ -9,12 +9,9 @@ class Dokter extends Model
 {
     use HasFactory;
 
-    public static function getAll()
-    {
-        return [
-            ['nama' => 'erica', 'spesialis' => 'kecantikan',  'alamat' => 'Bogor', 'telp' => '081234567890'],
-            ['nama' => 'juliet', 'spesialis' => 'kulit', 'alamat' => 'Depok', 'telp' => '081234567890'],
-            ['nama' => 'bilqis', 'spesialis' => 'hati', 'alamat' => 'jakarta', 'telp' => '081234567890'],
-        ];
-    }
+    // hubungkan model ke table dokter
+    protected $table = '_dokters';
+
+    // menyebutkan field yang boleh di isi
+    protected $fillable = ['nama', 'spesialis', 'tgl_lahir', 'alamat', 'telp'];
 }

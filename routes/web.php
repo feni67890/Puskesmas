@@ -35,3 +35,12 @@ Route::get('/dokter/create', [DokterController::class, 'create']);
 
 // Route untuk memproses form * Dokter
 Route::post('/dokter', [DokterController::class, 'store']);
+
+// Route untuk menampilkan form edit pasien
+Route::get('/pasien/edit/{id}', [pasienController::class, 'edit']);
+
+// Route untuk memproses form edit pasien
+Route::put('/pasien/{id}', [pasienController::class, 'update']);
+
+// Route untuk hapus pasien
+Route::delete('/pasien', [pasienController::class, 'destroy']);
