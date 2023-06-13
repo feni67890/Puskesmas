@@ -33,4 +33,45 @@ class DokterController extends Controller
         ]);
         return redirect('/dokter');
     }
+    public function edit($id)
+    {
+        // mendapatkan dokter berdasarkan id
+        $dokter =  Dokter::find($id);
+
+
+        return view('Admin.dokter.edit', [
+            'dokter' => $dokter
+
+        ]);
+    }
+    // method untuk update dokter
+    public function update($id, Request $request)
+    {
+        // Melakukan validasi data form
+        $validatedData = $request->validate([
+            'nama' => 'required | min:3',
+            'spesialis' => 'required ',
+            'tgl_lahir' => 'required | date',
+            'alamat' => 'required|max:500',
+            'telp' => 'required|numeric|digits_between:10,14',
+        ]);
+
+        // cari dokter yang akan di update
+        $dokter = Dokter::find($id);
+
+        // update dokter
+        $dokter->update($validatedData);
+
+        //kembalikan ke halaman daftar dokter 
+        return redirect('/dokter')->with('success', 'Data  dokter berhasil di ubah');
+    }
+
+    // method untuk hapus dokter
+    public function destroy(Request $request)
+    {
+        Dokter::destroy($request->id);
+
+        // kembalikan kehalaman daftar pasien
+        return redirect('/dokter')->with('success', 'Data dokter berhasil dihapus');
+    }
 }
