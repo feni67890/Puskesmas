@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,10 @@ class pasienController extends Controller
 
     public function create()
     {
-        return view('Admin.pasien.create');
+        $dokters = Dokter::all();
+        return view('Admin.pasien.create', [
+            'dokters' => $dokters
+        ]);
     }
 
     public function store(Request $request)
@@ -30,6 +34,7 @@ class pasienController extends Controller
             'tgl_lahir' => 'required | date',
             'alamat' => 'required|max:500',
             'telp' => 'required|numeric|digits_between:10,14',
+            'dokter_id' => 'required',
         ]);
 
         // insert data ke table pasiens 
@@ -39,7 +44,8 @@ class pasienController extends Controller
             'jk' => $request->jk,
             'tgl_lahir' => $request->tgl_lahir,
             'alamat' => $request->alamat,
-            'telp' => $request->telp
+            'telp' => $request->telp,
+            'dokter_id' => $request->dokter_id
         ]);
         return redirect('/pasien');
     }
@@ -48,9 +54,13 @@ class pasienController extends Controller
         // mendapatkan pasien berdasarkan id
         $pasien = Pasien::find($id);
 
+        $dokters = Dokter::all();
+
 
         return view('Admin.pasien.edit', [
-            'pasien' => $pasien
+            'pasien' => $pasien,
+            'dokters' => $dokters,
+
         ]);
     }
 
@@ -59,11 +69,12 @@ class pasienController extends Controller
     {
         // Melakukan validasi data form
         $validatedData = $request->validate([
-            'nama' => 'required | min:3',
+            'nama' => 'required',
             'jk' => 'required ',
             'tgl_lahir' => 'required | date',
             'alamat' => 'required|max:500',
             'telp' => 'required|numeric|digits_between:10,14',
+            'dokter_id' => 'required',
         ]);
 
         // cari pasien yang akan di update
@@ -71,6 +82,8 @@ class pasienController extends Controller
 
         // update pasien
         $pasien->update($validatedData);
+
+
 
         //kembalikan ke halaman daftar pasien 
         return redirect('/pasien')->with('success', 'Data pasien berhasil di ubah');
